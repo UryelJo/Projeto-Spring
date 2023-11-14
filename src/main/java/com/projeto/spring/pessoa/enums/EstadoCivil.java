@@ -13,6 +13,5 @@ public enum EstadoCivil{
     D("Divorciado"),
     V("Viuvo");
 
-
     private final String descricao;
 }

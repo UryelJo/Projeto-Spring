@@ -1,7 +1,9 @@
 package com.projeto.spring.pessoa.dto;
 
-import com.projeto.spring.pessoa.enums.Sexo;
-import com.projeto.spring.pessoa.enums.TipoPessoa;
+import com.projeto.spring.endereco.dto.EnderecoDTO;
+import com.projeto.spring.endereco.model.Endereco;
+import com.projeto.spring.graduacao.dto.GraduacaoDTO;
+import com.projeto.spring.graduacao.model.Graduacao;
 import com.projeto.spring.pessoa.model.Pessoa;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,9 +28,9 @@ public class PessoaDTO {
     private LocalDate dataCadastro;
     private String tipoPessoa;
     private String estadoCivil;
-    private Long idGraduacao;
+    private GraduacaoDTO graducao;
     private String ra;
-    private Long idEndereco;
+    private EnderecoDTO endereco;
 
     public PessoaDTO(Pessoa pessoa){
         this.nome = pessoa.getNomePessoa();
@@ -43,9 +45,9 @@ public class PessoaDTO {
         this.dataCadastro = pessoa.getDataCadastro();
         this.tipoPessoa = pessoa.getTipoPessoa();
         this.estadoCivil = pessoa.getEstadoCivil();
-        this.idGraduacao = pessoa.getIdGraduacao();
+        this.graducao = new GraduacaoDTO(pessoa.getGraduacao());
         this.ra = pessoa.getRaPessoa();
-        this.idEndereco = pessoa.getIdEndereco();
+        this.endereco = new EnderecoDTO(pessoa.getEndereco());
     }
 
     public static List<PessoaDTO> converterParaDTO(List<Pessoa> listaPessoas){

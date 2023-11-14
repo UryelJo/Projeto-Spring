@@ -21,7 +21,6 @@ public class CadastrarPessoaForm {
     private LocalDate formularioDataNascimento;
     private String formularioTipoPessoa;
     private String formularioEstadoCivil;
-    private Long formularioIdGraduacao;
     private String formularioRa;
     private Long formularioIdEndereco;
 
@@ -39,9 +38,7 @@ public class CadastrarPessoaForm {
                 .dataCadastro(LocalDate.now())
                 .tipoPessoa(formularioTipoPessoa)
                 .estadoCivil(formularioEstadoCivil)
-                .idGraduacao(formularioIdGraduacao)
                 .raPessoa(formularioRa)
-                .idEndereco(formularioIdEndereco)
                 .build();
     }
 }

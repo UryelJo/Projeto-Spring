@@ -21,12 +21,12 @@ public class PessoaResource {
         this.pessoaService = pessoaService;
     }
 
-    @GetMapping("/buscar-pessoas")
+    @GetMapping(path = "/buscar-todas")
     public ResponseEntity<List<PessoaDTO>> listarPessoas(){
         return this.pessoaService.listarPessoas();
     }
 
-    @GetMapping("/buscar-pessoa-por-id-{idPessoa}")
+    @GetMapping(path = "/buscar-por-id/{idPessoa}")
     public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable Long idPessoa){
         return this.pessoaService.buscarPessoa(idPessoa);
     }

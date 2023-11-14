@@ -1,5 +1,7 @@
 package com.projeto.spring.pessoa.model;
 
+import com.projeto.spring.endereco.model.Endereco;
+import com.projeto.spring.graduacao.model.Graduacao;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -55,12 +57,15 @@ public class Pessoa {
     @Column(name = "estado_civil")
     private String estadoCivil;
 
-    @Column(name = "graduacao_id")
-    private Long idGraduacao;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "graducao_id")
+    private Graduacao graduacao;
 
     @Column(name = "ra")
     private String raPessoa;
 
-    @Column(name = "endereco_id")
-    private Long idEndereco;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "endereco_id")
+    private Endereco endereco;
 }

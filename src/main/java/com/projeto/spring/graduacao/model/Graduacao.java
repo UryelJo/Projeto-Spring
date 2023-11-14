@@ -12,22 +12,23 @@ import lombok.Setter;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "graducao", schema = "public")
-public class Graducao {
+@Table(name = "graduacao", schema = "public")
+public class Graduacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome_graducao")
-    private String nomeGraducao;
+    @Column(name = "nome_graduacao")
+    private String nomeGraduacao;
 
-    @Column(name = "duracao_graducao")
-    private Long duracaoGraducao;
+    @Column(name = "duracao_graduacao")
+    private Long duracaoGraduacao;
 
-    @Column(name = "tipo_graducao")
-    private String tipoGraducao;
+    @Column(name = "tipo_graduacao")
+    private String tipoGraduacao;
 
     @Column(name = "qtd_alunos")
     private Long quantidadeAlunos;
+
 }

@@ -1,6 +1,8 @@
 package com.projeto.spring.pessoa.resource;
 
 import com.projeto.spring.pessoa.dto.PessoaDTO;
+import com.projeto.spring.pessoa.dto.PessoasPorEnderecoDTO;
+import com.projeto.spring.pessoa.dto.PessoasPorGraduacaoDTO;
 import com.projeto.spring.pessoa.form.CadastrarPessoaForm;
 import com.projeto.spring.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -29,6 +32,16 @@ public class PessoaResource {
     @GetMapping(path = "/buscar-por-id/{idPessoa}")
     public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable Long idPessoa){
         return this.pessoaService.buscarPessoa(idPessoa);
+    }
+
+    @GetMapping(path = "/buscar-por-graduacao")
+    public ResponseEntity<List<PessoasPorGraduacaoDTO>> buscarPessoasAgrupadasPorCadaCurso(){
+        return this.pessoaService.buscarPessoasAgrupadasPorCadaCurso();
+    }
+
+    @GetMapping(path = "/buscar-por-endereco")
+    public ResponseEntity<List<PessoasPorEnderecoDTO>> buscarPessoasAgrupadasPorEndereco(){
+        return this.pessoaService.buscarPessoasAgrupadasPorEndereco();
     }
 
     @DeleteMapping("/deletar-pessoa-{idPessoa}")

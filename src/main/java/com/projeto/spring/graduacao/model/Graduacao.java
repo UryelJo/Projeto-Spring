@@ -1,5 +1,7 @@
 package com.projeto.spring.graduacao.model;
 
+import com.projeto.spring.graduacao.enums.TipoGraduacao;
+import com.projeto.spring.pessoa.enums.TipoPessoa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +28,7 @@ public class Graduacao {
     private Long duracaoGraduacao;
 
     @Column(name = "tipo_graduacao")
-    private String tipoGraduacao;
+    private TipoGraduacao tipoGraduacao;
 
     @Column(name = "qtd_alunos")
     private Long quantidadeAlunos;

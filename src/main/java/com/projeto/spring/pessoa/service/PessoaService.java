@@ -1,6 +1,8 @@
 package com.projeto.spring.pessoa.service;
 
 import com.projeto.spring.pessoa.dto.PessoaDTO;
+import com.projeto.spring.pessoa.dto.PessoasPorEnderecoDTO;
+import com.projeto.spring.pessoa.dto.PessoasPorGraduacaoDTO;
 import com.projeto.spring.pessoa.form.CadastrarPessoaForm;
 import com.projeto.spring.pessoa.model.Pessoa;
 import com.projeto.spring.pessoa.repository.PessoaRepository;
@@ -13,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PessoaService {
@@ -40,7 +44,7 @@ public class PessoaService {
     @Transactional
     public ResponseEntity<HttpStatus> cadastrarPessoa(@Valid CadastrarPessoaForm formularioDeCadastragem) {
         this.pessoaRepository.save(formularioDeCadastragem.cadastrarNovaPessoa());
-        return ResponseEntity.ok(HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Transactional
@@ -50,7 +54,19 @@ public class PessoaService {
     }
 
 
+    public ResponseEntity<List<PessoasPorGraduacaoDTO>> buscarPessoasAgrupadasPorCadaCurso() {
+        Map<Long, List<PessoaDTO>> listaDeTodosOsAlunosAgrupadosPorCurso = PessoaDTO.converterParaDTO(this.pessoaRepository.findAll())
+                .stream()
+                .collect(Collectors.groupingBy(PessoaDTO::getIdGraduacao));
+        List<PessoasPorGraduacaoDTO> listaDePessoasAgrupadasPorGraduacao = PessoasPorGraduacaoDTO.converter(listaDeTodosOsAlunosAgrupadosPorCurso);
+        return ResponseEntity.ok(listaDePessoasAgrupadasPorGraduacao);
+    }
 
-
-
+    public ResponseEntity<List<PessoasPorEnderecoDTO>> buscarPessoasAgrupadasPorEndereco() {
+        Map<Long, List<PessoaDTO>> listaDeTodosOsAlunosAgrupadosPorEndereco = PessoaDTO.converterParaDTO(this.pessoaRepository.findAll())
+                .stream()
+                .collect(Collectors.groupingBy(PessoaDTO::getIdEndereco));
+        List<PessoasPorEnderecoDTO> listaDePessoasAgrupadasPorEndereco = PessoasPorEnderecoDTO.converter(listaDeTodosOsAlunosAgrupadosPorEndereco);
+        return ResponseEntity.ok(listaDePessoasAgrupadasPorEndereco);
+    }
 }

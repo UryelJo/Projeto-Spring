@@ -12,15 +12,17 @@ import java.util.stream.Collectors;
 @Setter
 public class GraduacaoDTO {
 
+    private Long id;
     private String nomeGraduacao;
     private Long duracaoGraduacao;
     private String tipoGraduacao;
     private Long quantidadeAlunos;
 
     public GraduacaoDTO(Graduacao graduacao){
+        this.id = graduacao.getId();
         this.nomeGraduacao = graduacao.getNomeGraduacao();
         this.duracaoGraduacao = graduacao.getDuracaoGraduacao();
-        this.tipoGraduacao = graduacao.getTipoGraduacao();
+        this.tipoGraduacao = graduacao.getTipoGraduacao().getDescricao();
         this.quantidadeAlunos = graduacao.getQuantidadeAlunos();
     }
 

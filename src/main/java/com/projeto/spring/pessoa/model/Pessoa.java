@@ -2,6 +2,9 @@ package com.projeto.spring.pessoa.model;
 
 import com.projeto.spring.endereco.model.Endereco;
 import com.projeto.spring.graduacao.model.Graduacao;
+import com.projeto.spring.pessoa.enums.EstadoCivil;
+import com.projeto.spring.pessoa.enums.Sexo;
+import com.projeto.spring.pessoa.enums.TipoPessoa;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,7 +34,8 @@ public class Pessoa {
     private Double alturaPessoa;
 
     @Column(name = "sexo")
-    private String sexoPessoa;
+    @Enumerated(value = EnumType.STRING)
+    private Sexo sexoPessoa;
 
     @Column(name = "telefone")
     private String telefonePessoa;
@@ -52,20 +56,27 @@ public class Pessoa {
     private LocalDate dataCadastro;
 
     @Column(name = "tipo_pessoa")
-    private String tipoPessoa;
+    @Enumerated(value = EnumType.STRING)
+    private TipoPessoa tipoPessoa;
 
     @Column(name = "estado_civil")
-    private String estadoCivil;
+    @Enumerated(value = EnumType.STRING)
+    private EstadoCivil estadoCivil;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "graducao_id")
-    private Graduacao graduacao;
+    @Column(name = "graduacao_id")
+    private Long idGraduacao;
 
     @Column(name = "ra")
     private String raPessoa;
 
+    @Column(name = "endereco_id")
+    private Long idEndereco;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "endereco_id")
+    @JoinColumn(name = "endereco_id", insertable = false, updatable = false)
     private Endereco endereco;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "graduacao_id", insertable = false, updatable = false)
+    private Graduacao graduacao;
 }

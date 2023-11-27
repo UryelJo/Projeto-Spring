@@ -8,9 +8,10 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum Sexo {
 
-    M("Masculino"),
-    F("Feminino"),
-    O("Outro");
+    M("M","Masculino"),
+    F("F","Feminino"),
+    O("O","Outro");
 
+    private final String valor;
     private final String descricao;
 }

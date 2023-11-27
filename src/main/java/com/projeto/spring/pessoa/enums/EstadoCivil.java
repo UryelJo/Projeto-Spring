@@ -8,10 +8,11 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum EstadoCivil{
 
-    C("Casado"),
-    S("Solteiro"),
-    D("Divorciado"),
-    V("Viuvo");
+    C("C" ,"Casado"),
+    S("S" ,"Solteiro"),
+    D("D" , "Divorciado"),
+    V("V" , "Viuvo");
 
+    private final String valor;
     private final String descricao;
 }
